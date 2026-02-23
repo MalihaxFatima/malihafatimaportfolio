@@ -1,4 +1,5 @@
 import { AlertTriangle, Search, Mail, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const projects = [
   {
@@ -6,6 +7,7 @@ const projects = [
     number: "01",
     title: "Incident Response – Enterprise Attack Investigation",
     subtitle: "Stark Enterprises Simulation",
+    caseStudyLink: "/case-study/incident-response",
     overview:
       "Full-scale incident response investigation on a simulated enterprise breach involving exploitation, lateral movement, data exfiltration, and ransomware deployment.",
     highlights: [
@@ -97,6 +99,14 @@ const ProjectsSection = () => {
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {project.overview}
                     </p>
+                    {project.caseStudyLink && (
+                      <Link
+                        to={project.caseStudyLink}
+                        className="inline-block mt-4 text-primary font-mono text-xs hover:underline"
+                      >
+                        View Case Study →
+                      </Link>
+                    )}
                   </div>
 
                   <div className="lg:w-1/3">
