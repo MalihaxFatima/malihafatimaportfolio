@@ -9,7 +9,7 @@ const FooterSection = () => {
           Let's <span className="text-primary">Connect</span>
         </h2>
         <p className="text-muted-foreground mb-8 max-w-md mx-auto text-sm">
-          Interested in discussing cybersecurity, collaboration opportunities, or the USTA Information Security internship.
+          Interested in discussing cybersecurity, security research, or collaboration opportunities.
         </p>
         <div className="flex justify-center gap-6">
           <a

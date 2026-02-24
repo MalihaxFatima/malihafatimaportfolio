@@ -19,7 +19,7 @@ const HeroSection = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary/50 mb-8">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
             <span className="text-sm font-mono text-primary">
-              AVAILABLE FOR INTERNSHIP — SUMMER 2026
+              OPEN TO CYBERSECURITY INTERNSHIP OPPORTUNITIES — SUMMER 2026
             </span>
           </div>
         </div>
@@ -34,9 +34,9 @@ const HeroSection = () => {
 
         <div className="flex flex-wrap justify-center gap-4 opacity-0 animate-fade-up-delay-3">
           {[
-            { icon: Shield, label: "Incident Response" },
-            { icon: Terminal, label: "Vulnerability Management" },
-            { icon: Lock, label: "Security Operations" },
+            { icon: Shield, label: "Incident Response & Threat Analysis" },
+            { icon: Terminal, label: "Vulnerability Management & Risk Assessment" },
+            { icon: Lock, label: "Security Operations & Threat Monitoring" },
           ].map(({ icon: Icon, label }) => (
             <div
               key={label}
@@ -53,7 +53,7 @@ const HeroSection = () => {
             href="#projects"
             className="inline-flex items-center gap-2 text-primary font-mono text-sm hover:text-glow transition-all"
           >
-            <span>EXPLORE MY WORK</span>
+            <span>VIEW MY PROJECTS</span>
             <span className="animate-bounce">↓</span>
           </a>
         </div>
