@@ -23,6 +23,7 @@ const projects = [
     number: "02",
     title: "Vulnerability Management",
     subtitle: "TRUGlobal Internship",
+    caseStudyLink: "/case-study/vulnerability-management",
     overview:
       "Supported vulnerability assessment and remediation efforts across organizational systems during internship.",
     highlights: [
@@ -38,6 +39,7 @@ const projects = [
     number: "03",
     title: "Phishing Simulation & Security Awareness",
     subtitle: "Academic Project",
+    caseStudyLink: "/case-study/phishing-lab",
     overview:
       "Designed and analyzed a phishing simulation to understand attacker techniques and improve user awareness against social engineering attacks.",
     highlights: [
