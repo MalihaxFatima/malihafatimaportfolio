@@ -1,26 +1,28 @@
 const skillCategories = [
   {
     title: "Security Tools",
-    skills: ["Nessus", "Wireshark", "Nmap", "Kali Linux", "SIEM"],
+    skills: ["Nessus", "Wireshark", "Nmap", "Kali Linux", "Elasticsearch (ELK Stack)", "Velociraptor (DFIR / Endpoint Investigation)"],
   },
   {
-    title: "Frameworks",
-    skills: ["NIST CSF", "CVSS", "MITRE ATT&CK", "Incident Response Lifecycle"],
+    title: "Frameworks & Standards",
+    skills: ["NIST Cybersecurity Framework (CSF)", "MITRE ATT&CK", "CVSS (Common Vulnerability Scoring System)", "Incident Response Lifecycle"],
   },
   {
     title: "Domains",
     skills: [
       "Threat Detection",
+      "Incident Response",
       "Vulnerability Management",
-      "Phishing Analysis",
       "Log Analysis",
+      "Phishing Analysis",
       "Risk Assessment",
+      "Web Security",
       "Security Awareness",
     ],
   },
   {
-    title: "Systems",
-    skills: ["Windows", "Linux", "TCP/IP", "Network Protocols", "Web Security"],
+    title: "Systems & Networking",
+    skills: ["Windows", "Linux", "TCP/IP", "Network Protocols"],
   },
 ];
 
