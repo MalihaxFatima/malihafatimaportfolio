@@ -104,7 +104,7 @@ const ProjectsSection = () => {
                     {project.caseStudyLink && (
                       <Link
                         to={project.caseStudyLink}
-                        className="inline-block mt-4 text-primary font-mono text-xs hover:underline"
+                        className="inline-block mt-4 text-primary font-mono text-sm hover:underline"
                       >
                         View Case Study →
                       </Link>
