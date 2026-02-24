@@ -31,134 +31,129 @@ const CaseStudyIncidentResponse = () => {
         </div>
 
         <div className="space-y-12 text-muted-foreground leading-relaxed text-sm">
-          <Section title="Overview">
-            <p>I conducted an end-to-end incident response investigation on a simulated enterprise breach involving initial exploitation, privilege escalation, lateral movement, data exfiltration, and ransomware deployment.</p>
-            <p>The objective was to identify the root cause, analyze attacker behavior across systems, and develop structured, actionable mitigation strategies to reduce organizational risk.</p>
+          <Section title="Summary">
+            <p>Investigated a simulated enterprise cyberattack involving remote code execution (CVE-2021-31166), credential harvesting, data exfiltration, and ransomware deployment. I reconstructed the full attack timeline, identified key vulnerabilities exploited by the attacker, and developed actionable recommendations to strengthen detection and response capabilities.</p>
+            <p>This project demonstrates my ability to analyze attacker behavior and contribute to incident response workflows in a SOC-like environment.</p>
           </Section>
 
-          <Section title="Business Impact">
-            <p>The attack resulted in compromise of multiple systems and unauthorized access to sensitive employee data. If this occurred in a real environment, it could lead to:</p>
-            <ul className="list-none space-y-2 mt-3">
-              {["Operational disruption due to ransomware", "Exposure of sensitive data", "Financial loss and regulatory consequences", "Reputational damage"].map((i) => (
-                <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
-              ))}
-            </ul>
-            <p className="mt-4 text-primary/80 font-mono text-xs border-l-2 border-primary/30 pl-4">
-              This case highlights how a single unpatched vulnerability in a public-facing system can escalate into a full enterprise compromise.
-            </p>
-          </Section>
-
-          <Section title="My Role">
-            <p>As part of the incident response team, I focused on log analysis and timeline reconstruction:</p>
+          <Section title="Context">
+            <p>This project simulated a real-world enterprise breach scenario where an attacker gained initial access to a Windows-based system and progressed through multiple stages of the attack lifecycle.</p>
+            <p className="mt-3">The objective was to:</p>
             <ul className="list-none space-y-2 mt-3">
               {[
-                "Identifying indicators of compromise (IOCs)",
-                "Correlating system and network activity across hosts",
-                "Mapping attacker movement across the environment",
-                "Contributing to root cause analysis and final reporting",
-                "Supporting development of prioritized mitigation strategies",
+                "Investigate how the attack occurred",
+                "Identify the techniques and vulnerabilities used",
+                "Reconstruct the attack timeline",
+                "Recommend mitigation strategies to prevent similar incidents",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
               ))}
             </ul>
+            <p className="mt-4">The environment included compromised systems, logs, and artifacts representing attacker activity across multiple days.</p>
           </Section>
 
-          <Section title="Investigation Approach">
-            <p>I followed a structured incident response methodology aligned with industry best practices.</p>
+          <Section title="Investigation">
+            <p>I focused on analyzing system artifacts and logs to understand how the attacker progressed through the environment and escalated their impact.</p>
 
-            <h4 className="text-foreground font-mono font-semibold mt-6 mb-2">1. Log Analysis & Timeline Reconstruction</h4>
-            <ul className="list-none space-y-2">
-              {[
-                "Analyzed logs from web, Linux, and domain systems",
-                "Identified suspicious authentication events and command execution",
-                "Correlated timestamps across systems to reconstruct attack progression",
-              ].map((i) => (
-                <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
-              ))}
-            </ul>
+            <h4 className="text-foreground font-mono font-semibold mt-6 mb-2">Initial Access</h4>
+            <p>The attack began with exploitation of CVE-2021-31166 (HTTP.sys Remote Code Execution), allowing the attacker to gain unauthorized access to the system.</p>
             <p className="mt-3 text-primary/80 font-mono text-xs border-l-2 border-primary/30 pl-4">
-              Key Finding: Initial access was gained through a malicious .aspx file deployed on a public-facing web server, followed by unauthorized command execution and privilege escalation.
+              I identified this as a critical entry point because it enabled remote execution without authentication, significantly increasing risk exposure.
             </p>
 
-            <h4 className="text-foreground font-mono font-semibold mt-6 mb-2">2. Attack Chain Analysis</h4>
-            <p>I traced the full attack lifecycle across multiple systems:</p>
+            <h4 className="text-foreground font-mono font-semibold mt-6 mb-2">Persistence & Credential Harvesting</h4>
+            <p>After gaining access, the attacker modified registry settings (e.g., NoLMHash) to weaken credential protections and enable easier harvesting.</p>
+            <p className="mt-2">I analyzed these changes and recognized that they allowed the attacker to extract password hashes, facilitating lateral movement.</p>
+
+            <h4 className="text-foreground font-mono font-semibold mt-6 mb-2">Lateral Movement & Tool Usage</h4>
+            <p>The attacker leveraged legitimate tools (Living-off-the-Land Binaries) such as:</p>
             <ul className="list-none space-y-2 mt-3">
-              {[
-                "Exploitation of CVE-2021-31166 (HTTP.sys Remote Code Execution)",
-                "Privilege escalation to SYSTEM-level access",
-                "Use of Living-off-the-Land Binaries (LOLBins) to evade detection",
-                "Lateral movement using tools such as WinSCP and PuTTY",
-                "Registry modification (NoLMHash) to weaken credential protections",
-                "Data exfiltration via SFTP to an external IP",
-                "Final-stage ransomware deployment targeting ESXi infrastructure",
-              ].map((i) => (
+              {["WinSCP", "PuTTY"].map((i) => (
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
               ))}
             </ul>
-            <p className="mt-3 italic">This demonstrated a coordinated, multi-stage attack leveraging both vulnerabilities and native system tools.</p>
+            <p className="mt-3">This made detection more difficult because these tools are commonly used in legitimate administrative workflows.</p>
+            <p className="mt-2 text-primary/80 font-mono text-xs border-l-2 border-primary/30 pl-4">
+              I identified this as an attempt to blend malicious activity with normal system behavior to evade detection.
+            </p>
 
-            <h4 className="text-foreground font-mono font-semibold mt-6 mb-2">3. Detection & Control Gaps Identified</h4>
+            <h4 className="text-foreground font-mono font-semibold mt-6 mb-2">Data Exfiltration</h4>
+            <p>The attacker used mysqldump and secure file transfer methods to extract sensitive data from the environment.</p>
+            <p className="mt-2">I correlated command execution with network activity to confirm that data was being staged and transferred externally.</p>
+
+            <h4 className="text-foreground font-mono font-semibold mt-6 mb-2">Final Impact: Ransomware Deployment</h4>
+            <p>The attack concluded with ransomware execution, encrypting system data and disrupting operations.</p>
+            <p className="mt-2">By reconstructing the sequence of events, I was able to show how earlier vulnerabilities and missed detection opportunities led to this final impact.</p>
+          </Section>
+
+          <Section title="Key Findings">
             <ul className="list-none space-y-2">
               {[
-                "Lack of timely patching for known critical vulnerabilities",
-                "Insufficient monitoring of registry changes and process activity",
-                "Limited visibility into lateral movement across systems",
-                "Absence of network segmentation allowing attacker spread",
+                "Critical vulnerability (CVE-2021-31166) enabled initial access",
+                "Weak credential protections allowed credential harvesting",
+                "Use of legitimate tools (LOLBins) helped attacker evade detection",
+                "Data exfiltration occurred prior to ransomware deployment",
+                "Lack of monitoring and segmentation contributed to full compromise",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
               ))}
             </ul>
           </Section>
 
-          <Section title="Root Cause">
-            <p>The primary root cause was the exploitation of an unpatched HTTP.sys vulnerability (CVE-2021-31166) on a public-facing IIS server.</p>
-            <p className="mt-3">Contributing factors included:</p>
+          <Section title="Recommendations">
+            <p>Based on my analysis, I proposed the following security improvements:</p>
             <ul className="list-none space-y-2 mt-3">
               {[
-                "Weak credential protection mechanisms",
-                "Lack of network segmentation",
-                "Insufficient centralized logging and monitoring",
-                "Absence of application control mechanisms",
+                "Patch critical vulnerabilities (especially externally exposed services)",
+                "Strengthen credential protection mechanisms",
+                "Implement network segmentation to limit lateral movement",
+                "Enhance monitoring for suspicious use of administrative tools",
+                "Improve logging and SIEM integration for early detection",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
               ))}
             </ul>
           </Section>
 
-          <Section title="Recommendations & Mitigation Strategy">
-            <p>Based on findings, I contributed to developing prioritized, risk-based recommendations aligned with the NIST Cybersecurity Framework (CSF):</p>
+          <Section title="Impact">
+            <p>This investigation highlighted how a single unpatched vulnerability can escalate into a full-scale ransomware attack when combined with weak monitoring and credential controls.</p>
+            <p className="mt-3">The analysis provided a clear attack timeline and actionable recommendations that could help:</p>
             <ul className="list-none space-y-2 mt-3">
               {[
-                "Immediate patching of HTTP.sys and other critical vulnerabilities",
-                "Implementation of network segmentation to limit lateral movement",
-                "Deployment of centralized logging and SIEM for improved visibility",
-                "Credential hardening (disable LM hashes, enforce NTLMv2/Kerberos)",
-                "Application allowlisting (AppLocker/WDAC)",
-                "Monitoring for registry changes and suspicious process execution",
+                "Reduce attack surface",
+                "Improve detection capabilities",
+                "Prevent similar incidents in real-world environments",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
               ))}
             </ul>
           </Section>
 
-          <Section title="Outcome & Key Learnings">
-            <p>This investigation strengthened my ability to:</p>
-            <ul className="list-none space-y-2 mt-3">
+          <Section title="Tools & Techniques">
+            <ul className="list-none space-y-2">
               {[
-                "Analyze complex, multi-stage cyberattacks",
-                "Correlate logs and reconstruct attack timelines",
-                "Identify root causes and contributing factors",
-                "Translate technical findings into actionable risk mitigation strategies",
+                "Log analysis and timeline reconstruction",
+                "MITRE ATT&CK-based reasoning",
+                "Analysis of Windows artifacts and registry changes",
+                "Understanding of LOLBins and attacker tradecraft",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
               ))}
             </ul>
-            <p className="mt-4">Most importantly, I learned that effective incident response is not just about identifying what happened — it's about connecting technical evidence to business risk and implementing controls that prevent recurrence.</p>
           </Section>
 
           <div className="mt-12 p-6 rounded-lg border border-primary/30 bg-primary/5">
-            <h4 className="text-primary font-mono font-semibold mb-2">Key Takeaway</h4>
-            <p className="text-foreground">A single unpatched vulnerability can lead to full enterprise compromise if not supported by layered defenses. Effective security requires proactive vulnerability management, strong monitoring, and defense-in-depth controls to reduce both likelihood and impact of attacks.</p>
+            <h4 className="text-primary font-mono font-semibold mb-3">Key Takeaways</h4>
+            <ul className="list-none space-y-2 text-foreground text-sm">
+              {[
+                "Attackers often combine multiple techniques rather than relying on a single exploit",
+                "Legitimate tools can be abused to evade detection",
+                "Early detection and patch management are critical to preventing escalation",
+                "Effective incident response requires both technical analysis and contextual understanding of attacker behavior",
+              ].map((i) => (
+                <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
