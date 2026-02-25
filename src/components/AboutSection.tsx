@@ -18,7 +18,7 @@ const AboutSection = () => {
             {
               icon: GraduationCap,
               title: "Education",
-              desc: "M.S. in Computer & Information Technology (Cybersecurity) — Purdue University. B.S. in Cybersecurity — Purdue University.",
+              desc: "First-year M.S. in Computer & Information Technology (Cybersecurity) — Purdue University.\nB.S. in Cybersecurity — Purdue University.",
             },
             {
               icon: Target,
@@ -37,7 +37,7 @@ const AboutSection = () => {
             >
               <Icon className="w-8 h-8 text-primary mb-4 group-hover:text-glow transition-all" />
               <h3 className="text-lg font-mono font-semibold text-foreground mb-3">{title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{desc}</p>
             </div>
           ))}
         </div>
