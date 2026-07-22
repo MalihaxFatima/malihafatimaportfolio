@@ -19,7 +19,7 @@ const HeroSection = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary/50 mb-8">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
             <span className="text-sm font-mono text-primary">
-              OPEN TO CYBERSECURITY INTERNSHIP OPPORTUNITIES — SUMMER 2026
+              OPEN TO CYBERSECURITY INTERNSHIP OPPORTUNITIES
             </span>
           </div>
         </div>
