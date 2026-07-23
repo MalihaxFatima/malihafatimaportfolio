@@ -18,7 +18,7 @@ const AboutSection = () => {
             {
               icon: GraduationCap,
               title: "Education",
-              desc: "First-year M.S. in Computer & Information Technology (Cybersecurity) — Purdue University.\nB.S. in Cybersecurity — Purdue University.",
+              desc: "First-year M.S. in Information Security — Purdue University.\nB.S. in Cybersecurity — Purdue University.",
             },
             {
               icon: Target,
