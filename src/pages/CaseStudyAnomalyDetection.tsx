@@ -33,7 +33,7 @@ const CaseStudyAnomalyDetection = () => {
         <div className="space-y-12 text-muted-foreground leading-relaxed text-sm">
           <Section title="Summary">
             <p>Built an end-to-end security research lab simulating an industrial chemical plant, then designed and executed real attacks against it, engineered a detection system to catch them, and integrated a local AI model to explain what the detector found — demonstrating the full lifecycle from offensive research to defensive tooling to AI-assisted analysis.</p>
-            <p>This project demonstrates my ability to operate across the full ICS/OT security lifecycle: building realistic infrastructure, thinking like an attacker, engineering evidence-based detection logic, and applying AI responsibly in a security context where accuracy is non-negotiable.</p>
+            <p className="mt-3">This project demonstrates my ability to operate across the full ICS/OT security lifecycle: building realistic infrastructure, thinking like an attacker, engineering evidence-based detection logic, and applying AI responsibly in a security context where accuracy is non-negotiable.</p>
           </Section>
 
           <Section title="Context">
@@ -49,7 +49,7 @@ const CaseStudyAnomalyDetection = () => {
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
               ))}
             </ul>
-            <p className="mt-4">The environment simulated a chemical plant using GRFICSv3 (Fortiphyd Logic's open-source ICS/OT security lab) — a 7-container Docker environment including a PLC (OpenPLC), HMI (ScadaLTS), physics-based process simulation, network router/firewall, and attacker tooling (Kali Linux, MITRE Caldera).</p>
+            <p className="mt-4">The environment simulated a chemical plant using GRFICSv3 (Fortiphyd Logic's open-source ICS/OT security lab) — a 7-container Docker environment including a PLC (OpenPLC), HMI (ScadaLTS), a chemical process simulation engine, network router/firewall, and attacker tooling (Kali Linux; the stack also includes MITRE Caldera, though this project's attacks were executed manually via Kali).</p>
           </Section>
 
           <Section title="Infrastructure & Environment">
@@ -60,7 +60,7 @@ const CaseStudyAnomalyDetection = () => {
 
           <Section title="Protocol Analysis">
             <p>Before I could detect abnormal behavior, I needed to deeply understand what normal behavior looked like.</p>
-            <p className="mt-3">I performed deep packet analysis using Wireshark on 40,000+ captured Modbus/TCP packets, reverse-engineering the system's data encoding scheme and control-loop behavior through controlled, isolated-variable experiments — changing one variable at a time and confirming its effect at the packet level rather than assuming behavior from documentation alone.</p>
+            <p className="mt-3">I performed deep packet analysis using Wireshark on 40,000+ raw captured packets, of which 28,000+ were parsed as legitimate Modbus/TCP application-layer traffic, reverse-engineering the system's data encoding scheme and control-loop behavior through controlled, isolated-variable experiments — changing one variable at a time and confirming its effect at the packet level rather than assuming behavior from documentation alone.</p>
             <p className="mt-3">This analysis surfaced two real architectural findings:</p>
             <ul className="list-none space-y-2 mt-3">
               {[
@@ -74,21 +74,22 @@ const CaseStudyAnomalyDetection = () => {
 
           <Section title="Offensive Security / Attack Simulation">
             <p>To build detection logic grounded in real evidence rather than guesswork, I first had to think and act like an attacker.</p>
-            <p className="mt-3">From an isolated attacker host, I designed and executed:</p>
+            <p className="mt-3">From an isolated attacker host, I designed and executed three distinct attacks, each targeting a different risk category:</p>
             <ul className="list-none space-y-2 mt-3">
               {[
-                "Reconnaissance attacks using Nmap Modbus discovery scripts",
-                "Unauthorized write attacks using custom Python (pymodbus) scripts",
+                "Reconnaissance — Nmap Modbus discovery scripts, attempting to fingerprint the PLC",
+                "Unauthorized register write — a custom Python (pymodbus) script writing directly to a live control variable",
+                "System-wide operational override — a single coil write forcing all four process valves into a hardcoded fail state simultaneously, immediately flipping the HMI's status from RUNNING to STOPPED",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
               ))}
             </ul>
-            <p className="mt-3">I demonstrated and verified a complete attack chain — from an unauthenticated Modbus write, to persistent PLC memory modification, to real-time physical process impact (a simulated valve actuation). I also developed and confirmed a "dormant trigger" technique, where a malicious write sat inactive until it was later activated by an unrelated, legitimate operator action — a realistic and harder-to-detect attack pattern.</p>
+            <p className="mt-3">I demonstrated and verified a complete attack chain — from an unauthenticated Modbus write, to persistent PLC memory modification, to real-time physical process impact (a simulated valve actuation). I also developed and confirmed a \"dormant trigger\" technique, where a malicious write sat inactive until it was later activated by an unrelated, legitimate operator action — a realistic and harder-to-detect attack pattern. The system-wide override attack, by contrast, demonstrated the opposite extreme: immediate, unconditional impact from a single write, with no dependency on any other condition.</p>
           </Section>
 
           <Section title="Detection Engineering">
             <p>With real attack evidence in hand, I built a Python-based Modbus/TCP anomaly detector (using Scapy and manual binary protocol parsing via struct) implementing detection rules directly derived from what I'd observed: function-code allowlisting, device IP allowlisting, and connection-behavior heuristics.</p>
-            <p className="mt-3">I designed a severity-scoring system with point values directly justified by demonstrated attack consequence — write-type anomalies, for example, were weighted higher only after I'd proven their physical impact, not by assumption. During testing, I identified a blind spot in my initial scoring logic and corrected it through systematic testing rather than shipping a detector that looked complete but hadn't actually been stress-tested against edge cases.</p>
+            <p className="mt-3">I designed a severity-scoring system with point values directly justified by demonstrated attack consequence — write-type anomalies, for example, were weighted higher only after I'd proven their physical impact, not by assumption. Testing the system-wide override attack against my own detector surfaced a real blind spot: it used a function code that was already considered \"known-legitimate\" (since the HMI uses it for normal operations), so my initial logic under-scored it despite it being the most consequential attack of the three. I corrected this by scoring based on who performs a write action, not solely which function code is used — a fix that generalizes beyond this one case, rather than a patch for it alone.</p>
             <p className="mt-3">The final detector achieved a 100% detection rate across real attack captures, with 0 false positives across 28,000+ legitimate packets in the baseline.</p>
           </Section>
 
@@ -103,8 +104,9 @@ const CaseStudyAnomalyDetection = () => {
                 "Sequential PLC polling architecture creates a single point of failure in control-loop reliability",
                 "Modbus's lack of native authentication/encryption is a fundamental, exploitable protocol weakness",
                 "A complete attack chain — from unauthenticated write to physical process impact — is achievable with minimal tooling",
-                "'Dormant trigger' attacks, where malicious writes activate later via unrelated legitimate actions, are a realistic and evasive technique",
-                "Detection logic built from actual attack evidence outperforms detection logic built from assumptions",
+                "\"Dormant trigger\" attacks, where malicious writes activate later via unrelated legitimate actions, are a realistic and evasive technique",
+                "A single unauthenticated coil write can trigger an immediate, system-wide operational override — no dependency on any other condition",
+                "Detection logic built from actual attack evidence outperforms detection logic built from assumptions, and testing against real attacks can surface scoring blind spots that theoretical design misses",
                 "LLM hallucination in a security context is a structural risk that requires architectural mitigation, not just prompting",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-2"><span className="text-primary mt-0.5">▸</span>{i}</li>
@@ -120,9 +122,9 @@ const CaseStudyAnomalyDetection = () => {
           <Section title="Tools & Techniques">
             <ul className="list-none space-y-2">
               {[
-                "GRFICSv3 (PLC/HMI/physics simulation), Docker, Linux VM administration (UTM/QEMU)",
+                "GRFICSv3 (PLC/HMI/chemical process simulation), Docker, Linux VM administration (UTM/QEMU)",
                 "Wireshark (deep packet analysis), Modbus/TCP protocol reverse engineering",
-                "Nmap (reconnaissance), Python/pymodbus (attack scripting), MITRE Caldera, Kali Linux",
+                "Nmap (reconnaissance), Python/pymodbus (attack scripting), Kali Linux",
                 "Python, Scapy, struct (binary protocol parsing) — custom anomaly detection engine",
                 "Ollama (Llama 3.2) — locally-hosted LLM integration, prompt engineering",
                 "Purdue Model for ICS network architecture",
