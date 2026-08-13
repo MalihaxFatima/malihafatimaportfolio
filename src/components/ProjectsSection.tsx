@@ -9,12 +9,13 @@ const projects = [
     subtitle: "GRFICSv3 + Ollama — Independent Security Research Project",
     caseStudyLink: "/case-study/ai-assisted-anomaly-detection",
     overview:
-      "Built an end-to-end ICS/OT security research lab, executed real attacks against a simulated chemical plant, engineered a Modbus/TCP anomaly detector, and integrated a local AI model to explain detection results.",
+      "Built an end-to-end ICS/OT security research lab simulating an industrial chemical plant, executed real attacks, engineered a Modbus/TCP anomaly detector with 100% detection and 0 false positives, and integrated a local AI model to explain detection results.",
     highlights: [
-      "Deployed GRFICSv3 7-container Docker ICS/OT lab in a native Linux VM",
-      "Reverse-engineered Modbus/TCP behavior from 40,000+ captured packets",
-      "Executed unauthenticated Modbus writes causing real physical process impact",
-      "Built anomaly detector with 100% detection rate and 0 false positives",
+      "Deployed GRFICSv3 7-container Docker ICS/OT lab in a native Linux VM, resolving macvlan/Docker Desktop incompatibilities",
+      "Reverse-engineered Modbus/TCP behavior from 40,000+ raw captured packets (28,000+ legitimate)",
+      "Executed three distinct unauthenticated Modbus attacks, including a system-wide operational override",
+      "Engineered a Python/Scapy anomaly detector and fixed a scoring blind spot by scoring write actions based on source, not just function code",
+      "Integrated Ollama/Llama 3.2 with deterministic factual generation to eliminate LLM hallucinations in incident explanations",
     ],
     skills: ["ICS/OT Security", "Offensive Security", "Detection Engineering", "AI Integration", "Modbus/TCP"],
   },
