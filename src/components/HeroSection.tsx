@@ -1,4 +1,4 @@
-import { Shield, Terminal, Lock } from "lucide-react";
+import { Shield, Brain, Cpu } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
@@ -34,9 +34,9 @@ const HeroSection = () => {
 
         <div className="flex flex-wrap justify-center gap-4 opacity-0 animate-fade-up-delay-3">
           {[
-            { icon: Shield, label: "Incident Response & Threat Analysis" },
-            { icon: Terminal, label: "Vulnerability Management & Risk Assessment" },
-            { icon: Lock, label: "Security Operations & Threat Monitoring" },
+            { icon: Cpu, label: "ICS/OT Security & Detection Engineering" },
+            { icon: Brain, label: "AI-Assisted Security Research" },
+            { icon: Shield, label: "Incident Response & Vulnerability Management" },
           ].map(({ icon: Icon, label }) => (
             <div
               key={label}

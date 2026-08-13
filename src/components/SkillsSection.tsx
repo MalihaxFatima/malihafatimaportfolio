@@ -1,7 +1,7 @@
 const skillCategories = [
   {
     title: "Security Tools",
-    skills: ["Nessus", "Wireshark", "Nmap", "Kali Linux", "Elasticsearch (ELK Stack)", "Velociraptor (DFIR / Endpoint Investigation)"],
+    skills: ["Nessus", "Wireshark", "Nmap", "Kali Linux", "Elasticsearch (ELK Stack)", "Velociraptor (DFIR / Endpoint Investigation)", "GRFICSv3", "Ollama"],
   },
   {
     title: "Frameworks & Standards",
@@ -10,6 +10,10 @@ const skillCategories = [
   {
     title: "Domains",
     skills: [
+      "ICS/OT Security",
+      "Detection Engineering",
+      "AI-Assisted Analysis",
+      "Modbus/TCP",
       "Threat Detection",
       "Incident Response",
       "Vulnerability Management",
@@ -22,7 +26,7 @@ const skillCategories = [
   },
   {
     title: "Systems & Networking",
-    skills: ["Windows", "Linux", "TCP/IP", "Network Protocols"],
+    skills: ["Windows", "Linux", "Docker", "TCP/IP", "Network Protocols"],
   },
 ];
 
