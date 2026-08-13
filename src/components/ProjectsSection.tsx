@@ -51,8 +51,24 @@ const projects = [
     skills: ["Social Engineering", "Security Awareness", "Email Attack Simulation", "DMARC"],
   },
   {
-    icon: Users,
+    icon: Cpu,
     number: "04",
+    title: "AI-Assisted Anomaly Detection System for Industrial Control Systems",
+    subtitle: "GRFICSv3 + Ollama — Independent Security Research Project",
+    caseStudyLink: "/case-study/ai-assisted-anomaly-detection",
+    overview:
+      "Built an end-to-end ICS/OT security research lab, executed real attacks against a simulated chemical plant, and developed a Python-based Modbus/TCP anomaly detector with locally-hosted AI-assisted incident reporting.",
+    highlights: [
+      "Deployed GRFICSv3 7-container Docker ICS/OT lab in a native Linux VM",
+      "Reverse-engineered Modbus/TCP behavior from 40,000+ captured packets",
+      "Executed unauthenticated Modbus writes causing real physical process impact",
+      "Built anomaly detector with 100% detection rate and 0 false positives",
+    ],
+    skills: ["ICS/OT Security", "Offensive Security", "Detection Engineering", "AI Integration", "Modbus/TCP"],
+  },
+  {
+    icon: Users,
+    number: "05",
     title: "Teaching Assistant",
     subtitle: "Purdue University",
     overview:
