@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import CaseStudyIncidentResponse from "./pages/CaseStudyIncidentResponse";
 import CaseStudyVulnerabilityManagement from "./pages/CaseStudyVulnerabilityManagement";
 import CaseStudyPhishingLab from "./pages/CaseStudyPhishingLab";
+import CaseStudyAnomalyDetection from "./pages/CaseStudyAnomalyDetection";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/case-study/incident-response" element={<CaseStudyIncidentResponse />} />
           <Route path="/case-study/vulnerability-management" element={<CaseStudyVulnerabilityManagement />} />
           <Route path="/case-study/phishing-lab" element={<CaseStudyPhishingLab />} />
+          <Route path="/case-study/ai-assisted-anomaly-detection" element={<CaseStudyAnomalyDetection />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
