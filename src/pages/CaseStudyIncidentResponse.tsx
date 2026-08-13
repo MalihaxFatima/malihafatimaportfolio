@@ -14,7 +14,7 @@ const CaseStudyIncidentResponse = () => {
 
         <div className="flex items-center gap-3 mb-4">
           <AlertTriangle className="w-8 h-8 text-primary" />
-          <span className="text-primary/40 font-mono text-4xl font-bold">01</span>
+          <span className="text-primary/40 font-mono text-4xl font-bold">02</span>
         </div>
 
         <h1 className="text-3xl md:text-4xl font-mono font-bold mb-2">
