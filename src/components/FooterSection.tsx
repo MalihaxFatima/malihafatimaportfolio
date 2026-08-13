@@ -11,12 +11,18 @@ const FooterSection = () => {
         <p className="text-muted-foreground mb-8 max-w-md mx-auto text-sm">
           Interested in discussing cybersecurity, security research, or collaboration opportunities.
         </p>
-        <div className="flex justify-center gap-6">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <a
-            href="mailto:maliha@example.com"
+            href="mailto:malihaf91203@gmail.com"
             className="px-6 py-3 rounded-lg border border-primary bg-primary/10 text-primary font-mono text-sm hover:bg-primary/20 hover:border-glow transition-all duration-300"
           >
             GET IN TOUCH
+          </a>
+          <a
+            href="mailto:fatima2@purdue.edu"
+            className="px-6 py-3 rounded-lg border border-border bg-secondary/50 text-secondary-foreground font-mono text-sm hover:border-primary/40 transition-all duration-300"
+          >
+            PURDUE EMAIL
           </a>
         </div>
         <p className="text-xs text-muted-foreground mt-12 font-mono">

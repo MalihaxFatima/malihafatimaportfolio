@@ -23,12 +23,12 @@ const AboutSection = () => {
             {
               icon: Target,
               title: "Focus Areas",
-              desc: "Incident response, vulnerability management, and security awareness — analyzing real-world attack scenarios and developing practical mitigation strategies.",
+              desc: "ICS/OT security, detection engineering, AI-assisted analysis, incident response, and vulnerability management — building practical labs and defensive tooling around real-world attack scenarios.",
             },
             {
               icon: BookOpen,
               title: "Research",
-              desc: "Currently researching social engineering mitigation strategies and exploring automation within SOC and vulnerability management workflows.",
+              desc: "Currently researching anomaly detection in industrial control systems and exploring local LLM integration for SOC workflows, incident reporting, and security automation.",
             },
           ].map(({ icon: Icon, title, desc }) => (
             <div
@@ -44,9 +44,8 @@ const AboutSection = () => {
 
         <div className="p-6 rounded-lg border border-border bg-card/30">
           <p className="text-muted-foreground leading-relaxed">
-            Graduate student with hands-on experience in incident response, vulnerability management, and security awareness. 
-            I focus on analyzing real-world attack scenarios, reducing security risk, and developing practical mitigation strategies 
-            aligned with industry best practices like NIST CSF.
+            Graduate student with hands-on experience in ICS/OT security, detection engineering, AI-assisted analysis, incident response, and vulnerability management. 
+            I build practical security labs, analyze real-world attack scenarios, and develop defensive tooling aligned with industry frameworks like NIST CSF and MITRE ATT&CK.
           </p>
         </div>
       </div>
