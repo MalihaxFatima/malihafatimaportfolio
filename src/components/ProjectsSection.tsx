@@ -3,8 +3,24 @@ import { Link } from "react-router-dom";
 
 const projects = [
   {
-    icon: AlertTriangle,
+    icon: Cpu,
     number: "01",
+    title: "AI-Assisted Anomaly Detection System for Industrial Control Systems",
+    subtitle: "GRFICSv3 + Ollama — Independent Security Research Project",
+    caseStudyLink: "/case-study/ai-assisted-anomaly-detection",
+    overview:
+      "Built an end-to-end ICS/OT security research lab, executed real attacks against a simulated chemical plant, engineered a Modbus/TCP anomaly detector, and integrated a local AI model to explain detection results.",
+    highlights: [
+      "Deployed GRFICSv3 7-container Docker ICS/OT lab in a native Linux VM",
+      "Reverse-engineered Modbus/TCP behavior from 40,000+ captured packets",
+      "Executed unauthenticated Modbus writes causing real physical process impact",
+      "Built anomaly detector with 100% detection rate and 0 false positives",
+    ],
+    skills: ["ICS/OT Security", "Offensive Security", "Detection Engineering", "AI Integration", "Modbus/TCP"],
+  },
+  {
+    icon: AlertTriangle,
+    number: "02",
     title: "Incident Response – Enterprise Attack Investigation",
     subtitle: "Stark Enterprises Simulation",
     caseStudyLink: "/case-study/incident-response",
@@ -20,7 +36,7 @@ const projects = [
   },
   {
     icon: Search,
-    number: "02",
+    number: "03",
     title: "Vulnerability Management",
     subtitle: "TRUGlobal Internship",
     caseStudyLink: "/case-study/vulnerability-management",
@@ -36,7 +52,7 @@ const projects = [
   },
   {
     icon: Mail,
-    number: "03",
+    number: "04",
     title: "Phishing Simulation & Security Awareness",
     subtitle: "Academic Project",
     caseStudyLink: "/case-study/phishing-lab",
@@ -49,22 +65,6 @@ const projects = [
       "Developed user awareness training materials",
     ],
     skills: ["Social Engineering", "Security Awareness", "Email Attack Simulation", "DMARC"],
-  },
-  {
-    icon: Cpu,
-    number: "04",
-    title: "AI-Assisted Anomaly Detection System for Industrial Control Systems",
-    subtitle: "GRFICSv3 + Ollama — Independent Security Research Project",
-    caseStudyLink: "/case-study/ai-assisted-anomaly-detection",
-    overview:
-      "Built an end-to-end ICS/OT security research lab, executed real attacks against a simulated chemical plant, and developed a Python-based Modbus/TCP anomaly detector with locally-hosted AI-assisted incident reporting.",
-    highlights: [
-      "Deployed GRFICSv3 7-container Docker ICS/OT lab in a native Linux VM",
-      "Reverse-engineered Modbus/TCP behavior from 40,000+ captured packets",
-      "Executed unauthenticated Modbus writes causing real physical process impact",
-      "Built anomaly detector with 100% detection rate and 0 false positives",
-    ],
-    skills: ["ICS/OT Security", "Offensive Security", "Detection Engineering", "AI Integration", "Modbus/TCP"],
   },
   {
     icon: Users,
